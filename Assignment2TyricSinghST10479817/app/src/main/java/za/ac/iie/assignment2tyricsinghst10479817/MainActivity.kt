@@ -1,5 +1,6 @@
 package za.ac.iie.assignment2tyricsinghst10479817
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
@@ -18,13 +19,15 @@ class MainActivity : AppCompatActivity() {
         val mainLayout = findViewById<ViewGroup>(R.id.main)
         val startButton = findViewById<Button>(R.id.btnstart)
 
+        //
+        startButton.setOnClickListener {
+            Toast.makeText(this@MainActivity, "Quiz is Starting", Toast.LENGTH_LONG).show()
 
-        startButton.setOnClickListener(
-            Toast.makeText(this)
-        )
+            val intent = Intent(this, QuizActivity::class.java)
+            startActivity(intent)
 
 
-
+        }
 
         mainLayout.setBackgroundResource(R.drawable.start_screen)
 
