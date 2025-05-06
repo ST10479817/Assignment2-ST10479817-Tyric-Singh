@@ -1,36 +1,16 @@
 package za.ac.iie.assignment2tyricsinghst10479817
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class ScoreActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-
-        val mainLayout = findViewById<ViewGroup>(R.id.main)
-        val startButton = findViewById<Button>(R.id.btnstart)
-
-        //
-        startButton.setOnClickListener {
-            Toast.makeText(this@MainActivity, "Quiz is Starting", Toast.LENGTH_LONG).show()
-
-            val intent = Intent(this, QuizActivity::class.java)
-            startActivity(intent)
-
-        }
-
-        mainLayout.setBackgroundResource(R.drawable.start_screen)
-
-
+        setContentView(R.layout.activity_score)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
