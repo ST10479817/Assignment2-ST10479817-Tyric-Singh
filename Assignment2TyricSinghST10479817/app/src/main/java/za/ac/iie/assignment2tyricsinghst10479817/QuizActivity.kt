@@ -1,6 +1,7 @@
 package za.ac.iie.assignment2tyricsinghst10479817
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
@@ -13,11 +14,11 @@ import androidx.core.view.WindowInsetsCompat
 class QuizActivity : AppCompatActivity() {
 
     private val questions = arrayOf(
-        "Nelson Mandela become South African's first Black president in 1994",
-        "The Soweto Uprising happened in 1980",
-        "Nelson Mandela was sentenced to life in prison",
-        "The ANC was banned again in 1994",
-        "Apartheid officially ended in 1994"
+        "Nelson Mandela become South African's first Black president in 1994.",
+        "The Soweto Uprising happened in 1980.",
+        "Nelson Mandela was sentenced to life in prison.",
+        "The ANC was banned again in 1994.",
+        "Apartheid officially ended in 1994."
     )
 
     private val answers = booleanArrayOf(
@@ -55,12 +56,15 @@ class QuizActivity : AppCompatActivity() {
         )
 
         nextButton.visibility = Button.GONE
+        trueButton.setBackgroundColor(Color.GREEN)
+        falseButton.setBackgroundColor(Color.RED)
+        nextButton.setBackgroundColor(Color.MAGENTA)
 
         fun questionDisplay() {
             questionText.text = questions[currentQuestion]
-            feedbackText.text = " "
-            trueButton.isEnabled = true
-            falseButton.isEnabled = true
+            feedbackText.text = ""
+            trueButton.visibility = Button.VISIBLE
+            falseButton.visibility = Button.VISIBLE
             mainLayout.setBackgroundResource(backgrounds[currentQuestion])
         }
 
@@ -75,8 +79,8 @@ class QuizActivity : AppCompatActivity() {
             }
 
             scoreText.text = "Score: $score"
-            trueButton.isEnabled = false
-            falseButton.isEnabled = false
+            trueButton.visibility = Button.GONE
+            falseButton.visibility = Button.GONE
         }
 
         questionDisplay()
@@ -103,7 +107,6 @@ class QuizActivity : AppCompatActivity() {
                 }
 
                 val intent = Intent(this, ScoreActivity::class.java)
-                intent.putExtra("score", finalScore)
                 intent.putExtra("score", score)
                 intent.putExtra("userAnswers", userAnswers)
 

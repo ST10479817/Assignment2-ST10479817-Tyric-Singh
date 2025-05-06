@@ -1,9 +1,11 @@
 package za.ac.iie.assignment2tyricsinghst10479817
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,8 +20,12 @@ class MainActivity : AppCompatActivity() {
 
         val mainLayout = findViewById<ViewGroup>(R.id.main)
         val startButton = findViewById<Button>(R.id.btnstart)
+        val instructionsText = findViewById<TextView>(R.id.txtinstructions)
 
-        //
+        instructionsText.text =  "Press Start Quiz button to begin quiz. \nYou will have two options: True and False. \nThen press Next to continue to next quetion."
+
+        startButton.setBackgroundColor(Color.MAGENTA)
+
         startButton.setOnClickListener {
             Toast.makeText(this@MainActivity, "Quiz is Starting", Toast.LENGTH_LONG).show()
 

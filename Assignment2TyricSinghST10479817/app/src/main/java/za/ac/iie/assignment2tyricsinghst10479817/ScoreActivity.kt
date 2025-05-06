@@ -1,6 +1,8 @@
 package za.ac.iie.assignment2tyricsinghst10479817
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -22,9 +24,15 @@ class ScoreActivity : AppCompatActivity() {
         val reviewText = findViewById<TextView>(R.id.txtreview)
         val reviewButton = findViewById<Button>(R.id.btnreview)
         val exitButton = findViewById<Button>(R.id.btnexit)
+        val reviewTitle = findViewById<TextView>(R.id.txtreviewTitle)
 
 
         scoreText.text = "$score/5"
+
+        reviewButton.setBackgroundColor(Color.MAGENTA)
+        exitButton.setBackgroundColor(Color.RED)
+        reviewTitle.visibility = Button.GONE
+
 
         feedbackText.text = if (score >= 3){
             "Great job!"
@@ -34,11 +42,11 @@ class ScoreActivity : AppCompatActivity() {
 
         reviewButton.setOnClickListener {
             val questions = arrayOf(
-                "Nelson Mandela became South Africa's first Black president in 1994",
-                "The Soweto Uprising happened in 1980",
-                "Nelson Mandela was sentenced to life in prison",
-                "The ANC was banned again in 1994",
-                "Apartheid officially ended in 1994"
+                "Nelson Mandela became South Africa's first Black president in 1994.",
+                "The Soweto Uprising happened in 1980.",
+                "Nelson Mandela was sentenced to life in prison.",
+                "The ANC was banned again in 1994.",
+                "Apartheid officially ended in 1994."
             )
 
             val answers = booleanArrayOf(
@@ -50,7 +58,7 @@ class ScoreActivity : AppCompatActivity() {
             )
 
             if (userAnswers == null) {
-                reviewText.text = "User answers not available"
+                reviewText.text = "User answers not available."
                 return@setOnClickListener
             }
 
@@ -58,9 +66,13 @@ class ScoreActivity : AppCompatActivity() {
             for (i in questions.indices){
                 val correct = userAnswers[i] == answers[i]
                 val result = if (correct) "Correct"  else "Incorrect"
-                reviewContent.append("Your answer was: ${userAnswers[i]} \nCorrect: ${answers[i]} \nResult: $result\n\n")
+                reviewContent.append("${questions[i]} \nThe Correct answer was: ${answers[i]} \nYou were: $result\n\n")
             }
             reviewText.text = reviewContent.toString()
+            scoreText.visibility = Button.GONE
+            feedbackText.visibility = Button.GONE
+            reviewButton.visibility = Button.GONE
+            reviewTitle.visibility = Button.VISIBLE
 
         }
 
