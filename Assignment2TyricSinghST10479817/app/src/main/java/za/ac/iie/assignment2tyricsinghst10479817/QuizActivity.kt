@@ -13,14 +13,16 @@ import androidx.core.view.WindowInsetsCompat
 
 class QuizActivity : AppCompatActivity() {
 
+    //Questions array
     private val questions = arrayOf(
         "Nelson Mandela become South African's first Black president in 1994.",
         "The Soweto Uprising happened in 1980.",
         "Nelson Mandela was sentenced to life in prison.",
-        "The ANC was banned again in 1994.",
+        "All South Africans gained voting rights before 1994",
         "Apartheid officially ended in 1994."
     )
 
+    //Answers array for each question
     private val answers = booleanArrayOf(
         true,
         false,
@@ -29,8 +31,11 @@ class QuizActivity : AppCompatActivity() {
         true
     )
 
+    //Variable that tracks the current question to display
     private var currentQuestion = 0
+    //An array that stores the user's answers using (True/ False) for each question
     private var userAnswers = BooleanArray(questions.size)
+    //Variable to keep track of the user's score based on the user's correct answers
     private var score = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +51,7 @@ class QuizActivity : AppCompatActivity() {
         val scoreText = findViewById<TextView>(R.id.txtscore)
         val mainLayout = findViewById<ViewGroup>(R.id.main)
 
-
+        //Background images for each question in an array
         val backgrounds = arrayOf(
             R.drawable.question_one,
             R.drawable.question_two,
@@ -55,11 +60,15 @@ class QuizActivity : AppCompatActivity() {
             R.drawable.question_five
         )
 
+        //Making Next button non-visibility
         nextButton.visibility = Button.GONE
+
+        //Making each Button a different colour
         trueButton.setBackgroundColor(Color.GREEN)
         falseButton.setBackgroundColor(Color.RED)
         nextButton.setBackgroundColor(Color.MAGENTA)
 
+        //A function that changes the question and background
         fun questionDisplay() {
             questionText.text = questions[currentQuestion]
             feedbackText.text = ""
@@ -68,6 +77,7 @@ class QuizActivity : AppCompatActivity() {
             mainLayout.setBackgroundResource(backgrounds[currentQuestion])
         }
 
+        //Checks the user's answer and updates the score
         fun answerchecker(userAnswer: Boolean){
             userAnswers[currentQuestion] = userAnswer
 
@@ -78,55 +88,56 @@ class QuizActivity : AppCompatActivity() {
                 feedbackText.text = "Incorrect"
             }
 
+            //Updates the score display
             scoreText.text = "Score: $score"
+
+            //Hides the False and True button
             trueButton.visibility = Button.GONE
             falseButton.visibility = Button.GONE
         }
 
+        //Displays the questions
         questionDisplay()
 
+        //Handles the True Button and brings out the Next Button
         trueButton.setOnClickListener {
             answerchecker(true)
             nextButton.visibility = Button.VISIBLE
         }
+
+        //Handles the False Button and brings out the Next Button
         falseButton.setOnClickListener {
             answerchecker(false)
             nextButton.visibility = Button.VISIBLE
         }
 
+        //Handles the Next Button
         nextButton.setOnClickListener {
             currentQuestion++
             if (currentQuestion < questions.size) {
+                //Displays the next question
                 questionDisplay()
                 nextButton.visibility = Button.GONE
             } else {
+                //End of quiz
+                //Here is a loop that will hold the total number of correct answers
                 var finalScore = 0
                 for (i in questions.indices) {
                     if (userAnswers[i] == answers[i])
                         finalScore++
                 }
 
+                //This takes the user to the Score Activity and the user's score to the next screen
                 val intent = Intent(this, ScoreActivity::class.java)
-                intent.putExtra("score", score)
+                intent.putExtra("score", finalScore)
                 intent.putExtra("userAnswers", userAnswers)
 
                 startActivity(intent)
+
+                //Close the current Quiz Activity
                 finish()
 
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

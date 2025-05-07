@@ -22,18 +22,23 @@ class MainActivity : AppCompatActivity() {
         val startButton = findViewById<Button>(R.id.btnstart)
         val instructionsText = findViewById<TextView>(R.id.txtinstructions)
 
+        // Text to guide the user on how to use the quiz
         instructionsText.text =  "Press Start Quiz button to begin quiz. \nYou will have two options: True and False. \nThen press Next to continue to next quetion."
 
-        startButton.setBackgroundColor(Color.MAGENTA)
+        startButton.setBackgroundColor(Color.MAGENTA)//Colour of the button
 
+        //The button that takes you to the next screen
         startButton.setOnClickListener {
+            //Display a Toast message to indicate that the quiz is starting
             Toast.makeText(this@MainActivity, "Quiz is Starting", Toast.LENGTH_LONG).show()
 
+            //Able to move to the QuizActivity
             val intent = Intent(this, QuizActivity::class.java)
             startActivity(intent)
 
         }
 
+        //Background of the Start Screen
         mainLayout.setBackgroundResource(R.drawable.start_screen)
 
 
