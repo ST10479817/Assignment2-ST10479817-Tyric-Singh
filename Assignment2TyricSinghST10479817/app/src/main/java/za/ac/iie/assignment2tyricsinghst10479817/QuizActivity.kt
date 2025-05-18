@@ -70,11 +70,13 @@ class QuizActivity : AppCompatActivity() {
 
         //A function that changes the question and background
         fun questionDisplay() {
-            questionText.text = questions[currentQuestion]
+            // Loop to display each question
+            for (i in currentQuestion until questions.size){
+            questionText.text = questions[i]
             feedbackText.text = ""
-            trueButton.visibility = Button.VISIBLE
-            falseButton.visibility = Button.VISIBLE
-            mainLayout.setBackgroundResource(backgrounds[currentQuestion])
+            mainLayout.setBackgroundResource(backgrounds[i])
+            break
+            }
         }
 
         //Checks the user's answer and updates the score
@@ -118,6 +120,8 @@ class QuizActivity : AppCompatActivity() {
                 //Displays the next question
                 questionDisplay()
                 nextButton.visibility = Button.GONE
+                trueButton.visibility = Button.VISIBLE
+                falseButton.visibility = Button.VISIBLE
             } else {
                 //End of quiz
                 //Here is a loop that will hold the total number of correct answers
