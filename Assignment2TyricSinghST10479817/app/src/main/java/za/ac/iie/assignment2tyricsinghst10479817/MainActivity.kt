@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
         val instructionsText = findViewById<TextView>(R.id.txtinstructions)
 
         // Text to guide the user on how to use the quiz
-        instructionsText.text =  "Press Start Quiz button to begin quiz. \nYou will have two options: True and False. \nThen press Next to continue to next question."
+        instructionsText.text =  "Press Start Quiz button to begin quiz. \nYou will have two options: True or False. Please pick one." +
+                "\nThen press Next to continue to next question."
 
         startButton.setBackgroundColor(Color.MAGENTA)//Colour of the button
 
