@@ -19,7 +19,7 @@ jobs:
 
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
-        working-directory: PizzaHutOrderingApp
+        working-directory: Assignment2TyricSinghST10479817
 
       - name: Build the project
         run: ./gradlew build
