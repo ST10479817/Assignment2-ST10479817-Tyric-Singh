@@ -7,8 +7,7 @@ This Flashcard Quiz App is an Android application designed to test users' knowle
 https://github.com/ST10479817/Assignment2-ST10479817-Tyric-Singh.git
 
 ## The Youtube Video Demostration
-
-
+https://youtu.be/fi-h3f-XGJQ
 
 ## The Report
 
